@@ -223,6 +223,14 @@ sections (decisions, follow-ups). Reports are authored where the team's
 process says; the toolkit validates shape and can compose read-only views
 from child reports on demand. Composition does not rewrite sources.
 
+### 2.16 Skills matrix
+
+The assignments view over skills, roles and projects: for each agent, the
+weights it holds on roles (2.2), projects (2.3) and skills (2.4), plus its
+affinity (2.8) and SME (2.9) markers. It is rendered from the store and the
+seed notes on demand. It is a view, never a source: weights change only
+through ledger events (2.10).
+
 ## 3. Rules
 
 ### 3.1 Source of truth
@@ -241,7 +249,7 @@ Standard ASCII: hyphen (`-`), colon (`:`), straight quotes (`'` and `"`).
 - Other non-ASCII characters in imported skills are kept, so the skill still
   round-trips (3.3).
 - New content the package writes itself (event text, role text, rendered
-  matrix, lint output) is strict ASCII by default.
+  skills matrix (2.16), lint output) is strict ASCII by default.
 
 ### 3.3 Round-trip
 
