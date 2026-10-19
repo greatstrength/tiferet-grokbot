@@ -3,7 +3,7 @@
 **Status:** Draft | **Domain:** `grokbot` | **Branch:** docs-core-domain | **Issue:** not published
 **Related:** `docs/domain.md` sections 2.4-2.6, 2.10, 3.1-3.3
 **Depends on:** none - first RFP in this repo
-**Blocks:** TGB0-RFP-002 (routing reads tags from this store), TGB0-RFP-003 (ledger shares the event shape)
+**Blocks:** TGB0-RFP-002 (routing reads tags from this store), TGB0-RFP-003 (ledger shares the event shape), TGB0-RFP-005 (CLI commands over this store)
 
 ## 1. Summary
 
@@ -85,7 +85,7 @@ document. Routing (TGB0-RFP-002) needs the tags this store holds.
 
 - **Resolved:** source of truth is the skill directory (domain.md 3.1).
 - **Resolved:** dashes normalize on import; new content is strict ASCII (3.2).
-- **Resolved:** YAML core with `[h5]` optional (Major default).
+- **Resolved:** YAML core with `[h5]` optional (maintainer default).
 - **Open:** ordinal-based diffing. Inserting a section mid-document shifts
   later ordinals. Matching by key and heading would be tighter (stable section
   keys; also needed by later composition).

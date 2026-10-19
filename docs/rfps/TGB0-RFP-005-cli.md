@@ -63,7 +63,7 @@ from scripts and from bots that shell out.
 
 ## 6. Risks and open questions
 
-- **Resolved:** YAML core, h5 optional (Major default).
+- **Resolved:** YAML core, h5 optional (maintainer default).
 - **Resolved:** advisory lint exit 1 on findings, not a hard block.
 - **Open:** exact env var prefix (`GROKBOT_` vs `TIFERET_GROKBOT_`).
 - **Open:** whether `matrix --out` must refuse to overwrite without `--force`.

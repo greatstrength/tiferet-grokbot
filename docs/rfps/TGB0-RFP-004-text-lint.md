@@ -2,8 +2,8 @@
 
 **Status:** Draft | **Domain:** `grokbot` | **Branch:** docs-core-domain | **Issue:** not published
 **Related:** `docs/domain.md` sections 2.14, 3.2, 3.7
-**Depends on:** none for the pure checks; TGB0-RFP-005 for the CLI surface
-**Blocks:** advisory policy checks that reuse lint findings (TGB0-RFP-006)
+**Depends on:** none - pure checks; the `grokbot lint` command lands with the CLI (TGB0-RFP-005)
+**Blocks:** TGB0-RFP-005 (the CLI exposes `grokbot lint`), TGB0-RFP-006 (advisory policy checks reuse lint findings)
 
 ## 1. Summary
 
@@ -54,7 +54,7 @@ findings.
 
 ## 6. Risks and open questions
 
-- **Resolved:** advisory first (Major default).
+- **Resolved:** advisory first (maintainer default).
 - **Resolved:** signature format comes from binding, not hardcoded account
   names.
 - **Open:** whether lint should rewrite files in place under a flag, or only

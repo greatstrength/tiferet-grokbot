@@ -3,7 +3,7 @@
 **Status:** Draft | **Domain:** `grokbot` | **Branch:** docs-core-domain | **Issue:** not published
 **Related:** `docs/domain.md` sections 2.1-2.3, 2.7-2.9, 3.4-3.6
 **Depends on:** TGB0-RFP-001 - skills and tags live in that store
-**Blocks:** TGB0-RFP-003 (seed replay drives weights), golden routing tests (v0.2)
+**Blocks:** TGB0-RFP-003 (seed replay drives weights), TGB0-RFP-005 (route, weight and matrix commands), golden routing tests (v0.2)
 
 ## 1. Summary
 
@@ -73,7 +73,7 @@ one team's names into the engine.
 - **Open:** whether role weights should later be derived from skill weights.
 - **Open:** affinity scope beyond a single role (for example testing on a
   heavy task).
-- **Watch:** close calls on ties; the matrix must label every tie.
+- **Open:** close calls on ties; the matrix must label every tie.
 
 ## 7. Acceptance criteria
 
