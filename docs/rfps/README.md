@@ -20,8 +20,9 @@ marks the 0.x line until a 1.0 freeze.
 Files for drafts 001-005 live beside this index. Planned RFPs are titles only
 until their phase starts. Domain citations use `docs/domain.md` section numbers.
 
-Governance note: an experiment against this (or any) project's core domain is
-gated on an RFP (domain.md 3.8). That rule is general; the toolkit encodes it
-as a candidate guardrail for every project it binds to.
+Governance note: an experiment against this (or any) project's core domain
+follows a fixed order (domain.md 3.8): updated core domain docs first, then an
+RFP against them, then implementation. That rule is general; the toolkit
+encodes it as a candidate guardrail for every project it binds to.
 
 - major@grokbot via tif-ai

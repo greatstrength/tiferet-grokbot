@@ -161,12 +161,13 @@ cutting a git tag or publishing a release; bumping a package version; minting
 a catalog freeze; creating, closing or renaming a milestone; changing
 repository or organization settings.
 
-**Candidate (governance):** start an experiment, a prototype strand, or any
-work that changes the project's theory without an RFP against the project's
-current core domain docs. The toolkit encodes this as a general rule for
-every project it binds to, not a house rule of one team: an experiment is
-gated on an RFP that cites the numbered sections it amends or tests (see
-3.8). Teams may enable this candidate in their policy set.
+**Candidate (governance):** start implementing an experiment, a prototype
+strand, or any work that changes the project's theory before an RFP exists
+against the project's updated core domain docs. The toolkit encodes this as a
+general rule for every project it binds to, not a house rule of one team: the
+core domain docs come first, then an RFP that cites the numbered sections it
+amends or tests, then implementation (3.8). Teams may enable this candidate
+check in their policy set.
 
 In v0.1 a check is **advisory**: it reports a violation and does not block.
 Stronger enforcement (a wrapper or hook that refuses the command) is a later
@@ -285,16 +286,24 @@ in v0.1. A later RFP may add enforcement.
 ### 3.8 Experiments need an RFP
 
 An experiment, a prototype strand, or any work that changes a project's
-theory is gated on an RFP against that project's current core domain docs.
-The RFP cites the numbered distillation sections it amends or tests. Opening
-a proto PR, a speculative branch, or a "just try it" change with no RFP
-behind it is out of process.
+theory follows a fixed order:
+
+1. The project's core domain docs (vision and distillation) are current on
+   the trunk branch, or the RFP names the amendment it makes and that
+   amendment lands in the same prototype work.
+2. An RFP is written against those docs. It cites the numbered distillation
+   sections it amends or tests.
+3. Only then may implementation start.
+
+Opening a proto PR, a speculative branch, or a "just try it" change with no
+RFP behind it is out of process.
 
 This is a **general governance rule** the toolkit encodes for every project
 it binds to. It is not specific to tiferet-grokbot or to one bot team. The
 default guardrail policy lists it as a candidate check (2.11); a team's
-binding turns it on or off. The RFP document shape itself is out of scope
-for v0.1 and lands with the templates module.
+binding turns that check on or off, and the check is advisory in v0.1 (3.7).
+The RFP document shape itself is out of scope for v0.1 and lands with the
+templates module.
 
 ## 4. Boundaries
 

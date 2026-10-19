@@ -54,9 +54,10 @@ org, installs it and points it at its own skill files, roster and policies.
 - Agents never merge, tag, push to main, cut a release, mint a freeze, or
   touch milestones or settings. The default guardrail policy says so; it is
   advisory in v0.1.
-- Experiments need an RFP against the project's current core domain docs.
-  The toolkit encodes that as a general governance rule (and a candidate
-  guardrail) for every project it binds to, not a house rule of one team.
+- Experiments need an RFP against the project's updated core domain docs
+  before any implementation starts. The toolkit encodes that as a general
+  governance rule (and a candidate guardrail) for every project it binds to,
+  not a house rule of one team.
 
 ## Who builds it
 
