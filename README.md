@@ -75,5 +75,3 @@ requests under the RFP gate (`docs/domain.md` 3.8).
 ## License
 
 BSD 3-Clause. See `LICENSE`.
-
-- major@grokbot via tif-ai

@@ -348,5 +348,3 @@ Five skills tagged with roles. After seeding:
 
 Real team data, seeds and reasons live in each team's private config, not
 in this repository.
-
-- major@grokbot via tif-ai
