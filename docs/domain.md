@@ -121,7 +121,7 @@ used as a boost.
 
 An SME is a domain expert for a project and its primary feedback provider,
 not its main implementer. It is an assignment of kind `sme` with a project
-tag as target and weight 1.
+tag as target and a weight above 0 (conventionally 1; see 2.7).
 
 - When a message in a **feedback role** (2.2) names an SME project and an SME
   is among the recipients, only SMEs compete (3.5).
