@@ -33,9 +33,17 @@ org, installs it and points it at its own skill files, roster and policies.
 
 - `docs/domain.md` - the core domain (Bot, Role, Project, Skill, Assignment,
   Routing, Ledger, Policy, Handoff, Report, Lint, Binding).
-- `docs/rfps/` - Request for Prototype drafts. v0.1 covers the skills store,
-  roster and routing, ledger, lint and CLI. Later RFPs are indexed there.
 - Code package: not yet; see the RFPs.
+
+## RFPs
+
+Prototype work follows the Tiferet RFP model. An RFP is drafted locally in a
+gitignored `.rfp/` folder, then published as a GitHub issue on this repo; the
+issue body is the public copy. Ids are `TGB0-RFP-<nnn>` (`TGB0` marks the 0.x
+line until a 1.0 freeze) and issue titles are `RFP-00N - <Plain Title>`.
+Every RFP cites `docs/domain.md` section numbers and passes the experiment
+gate (`docs/domain.md` 3.8). The v0.1 RFPs cover the skills store, roster and
+routing, ledger, lint and CLI.
 
 ## Dependencies (planned)
 

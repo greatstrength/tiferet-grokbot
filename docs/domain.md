@@ -4,8 +4,9 @@
 
 This page names the core domain of tiferet-grokbot: what a bot is, how skills
 are stored and weighted, how messages are routed, how every change is recorded,
-and how policies and templates keep a team reliable. RFPs in `docs/rfps/` cite
-the numbered sections below. The language is platform-neutral: any team on any
+and how policies and templates keep a team reliable. RFPs for this repo
+(drafted locally, published as GitHub issues) cite the numbered sections
+below. The language is platform-neutral: any team on any
 bot platform can bind these terms to its own agents, repos and accounts.
 
 ## 1. Vision
