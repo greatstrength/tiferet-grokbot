@@ -67,10 +67,10 @@ routing, ledger, lint and CLI.
   governance rule (and a candidate guardrail) for every project it binds to,
   not a house rule of one team.
 
-## Who builds it
+## Maintainers
 
-Major leads (SME for this project). Batou and Togusa implement. Ishikawa and
-Saito review. Co-drafting of the core domain docs was Major with Ishikawa.
+Maintained by Great Strength Systems. Contributions come through pull
+requests under the RFP gate (`docs/domain.md` 3.8).
 
 ## License
 
