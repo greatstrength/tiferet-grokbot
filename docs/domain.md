@@ -31,9 +31,9 @@ act (if any) are binding facts (2.13), not part of the agent identity.
 ### 2.2 Role
 
 A category of work. The default set is: `leadership`, `implementation`,
-`testing`, `review`, `triage`, `scouting`, `documentation`. A team may extend
-the set in its binding, but every role used in an assignment or a route must
-be declared.
+`testing`, `review`, `triage`, `scouting`, `documentation`. The binding owns
+the role list (2.13): a team extends the set there, and every role used in an
+assignment or a route must be declared in it. The seed never declares roles.
 
 Roles fall into three routing classes (3.5):
 
@@ -41,14 +41,17 @@ Roles fall into three routing classes (3.5):
   SME among the recipients, only SMEs compete.
 - **Implementer roles** (default: leadership, implementation, testing): when a
   project has an SME among the recipients, only non-SMEs compete.
-- **Other roles** (default: documentation): no SME filter; scores decide. A
-  team may move a role between classes in its seed.
+- **Other roles** (default: documentation): no SME filter; scores decide. The
+  role classes are part of the binding's vocabulary too: a team moves a role
+  between classes in its binding, not in its seed.
 
 ### 2.3 Project
 
 A scope a weight or a route applies to, usually a repository or product area.
-Identified by a project tag (for example `core`, `docs`, `store`). Project
-tags used in assignments must be declared in the seed.
+Identified by a project tag (for example `core`, `docs`, `store`). The
+binding owns the project tag list (2.13): every project tag used in an
+assignment, a skill tag or a route must be declared there. The seed only
+uses those tags.
 
 ### 2.4 Skill
 
@@ -193,6 +196,11 @@ Per-repo or per-team facts every module reads from one file: RFP id prefix,
 proto branch name, shared bot account, signature format, project and role
 tag lists, skill directory path, and any platform-specific ids. Skills and
 RFPs should read the current repo's binding if it exists.
+
+The binding owns the vocabulary: the role list and role classes (2.2) and
+the project tag list (2.3). The seed (3.6) owns only the weights and
+assignments that use that vocabulary, with their history. A seed entry
+that names a role or project tag the binding does not declare is invalid.
 
 ### 2.14 Lint rule
 
