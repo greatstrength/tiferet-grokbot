@@ -32,7 +32,8 @@ org, installs it and points it at its own skill files, roster and policies.
 ## Contents
 
 - `docs/domain.md` - the core domain (Bot, Role, Project, Skill, Assignment,
-  Routing, Ledger, Policy, Handoff, Report, Lint, Binding).
+  Affinity, Balance, Routing, Ledger, Policy, Handoff, Report, Lint,
+  Binding).
 - Code package: not yet; see the RFPs.
 
 ## RFPs

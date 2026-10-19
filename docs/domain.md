@@ -101,25 +101,46 @@ One weight, an integer 0-5, from one agent to one target. The target kind is:
 - `project`: a project tag (2.3).
 - `skill`: one skill id (overrides the role weight when a message names that
   skill).
-- `affinity`: a pairing with a lead agent for one role, written
-  `<lead>:<role>` (2.8).
+- `affinity`: a bot-to-bot pairwise weight from this agent to another
+  agent, written `<bot>` (any role) or `<bot>:<role>` (one role) (2.8).
 - `sme`: a project the agent is the domain subject matter expert for; any
   weight above 0 marks it (2.9).
 
 An agent holds at most one assignment per (kind, target).
 
-### 2.8 Affinity (pairing)
+### 2.8 Affinity (bot-to-bot)
 
-An affinity says one agent sticks close to a lead for one kind of work. It is
-an assignment of kind `affinity` with target `<lead>:<role>` and a weight 0-5
-used as a boost.
+An affinity is a pairwise weight between two bots: how closely one agent
+works with another. It is an assignment of kind `affinity` held by `bot-a`
+with target `bot-b` (any role) or `bot-b:<role>` (one role), weight 0-5.
+It is directed: `bot-a -> bot-b` says nothing about `bot-b -> bot-a`; a
+team that wants a symmetric pair records both.
 
-- Delegation: when the lead takes on or delegates a task in that role, each
-  recipient with an affinity to that lead adds its affinity weight to its
-  score.
-- Partner: when the lead wins a task in that role, the recipient with the
-  highest affinity to the lead is named as the partner.
-- An agent cannot have an affinity to itself, and the lead must exist.
+- Delegation: when a lead takes on or delegates a task in a role, each
+  recipient's affinity score (2.8.1) toward that lead is balanced into its
+  routing score (2.17).
+- Partner: the winner's partner is the other recipient with the highest
+  affinity score toward the winner for that role, if any.
+- A role-scoped entry `bot-b:<role>` wins over an unscoped `bot-b` entry
+  for that role; they are not added.
+- An agent cannot have an affinity to itself, and the other bot must exist.
+
+#### 2.8.1 Affinity source (pluggable)
+
+The affinity input is pluggable. An **affinity source** answers one
+question: given a candidate, a lead (or winner) and the message context
+(role, optional project and skill, recipients), what does this source add,
+as an integer 0-5, and why (a one-line provenance)? The affinity score is
+the sum over the binding's sources, capped at 5.
+
+- The core ships one source, `pairwise`: the assignments in 2.8.
+- A binding (2.13) may list extra sources by name. Each extra source is a
+  team extension: its data, rules and weights live with the team, not in
+  this repository.
+- A source only reads. It cannot change weights, the competing field (the
+  SME rule, 2.9), or the roster, and it writes no events.
+- The relay result lists each source's contribution and provenance, so a
+  route can always be explained.
 
 ### 2.9 SME (domain subject matter expert)
 
@@ -197,6 +218,10 @@ proto branch name, shared bot account, signature format, project and role
 tag lists, skill directory path, and any platform-specific ids. Skills and
 RFPs should read the current repo's binding if it exists.
 
+Routing settings also live in the binding: `affinity_coefficient` and
+`coherence_bound` (2.17), and `affinity_sources`, the ordered list of
+affinity sources (2.8.1; default `[pairwise]`).
+
 The binding owns the vocabulary: the role list and role classes (2.2) and
 the project tag list (2.3). The seed (3.6) owns only the weights and
 assignments that use that vocabulary, with their history. A seed entry
@@ -230,6 +255,24 @@ weights it holds on roles (2.2), projects (2.3) and skills (2.4), plus its
 affinity (2.8) and SME (2.9) markers. It is rendered from the store and the
 seed notes on demand. It is a view, never a source: weights change only
 through ledger events (2.10).
+
+### 2.17 Balance
+
+Balance combines the **logical score** (skills and routing: base + project,
+3.5) with the **affinity score** (2.8.1) through a per-binding coefficient:
+
+```
+balanced = logical + c * affinity
+```
+
+- `c` is `affinity_coefficient`, set per binding, 0 to 1, default 0.5. At
+  0 affinity only names partners; at 1 it counts as much as a weight point.
+- **Coherence bound:** affinity may not carry a candidate past the logic of
+  the route. A candidate whose logical score is more than
+  `coherence_bound` (default 2) below the best logical score in the
+  competing field gets affinity 0 for that message. With the defaults,
+  affinity can close a gap of at most 2 and add at most 2.5.
+- Balance never touches the field: the SME rule (2.9) runs first.
 
 ## 3. Rules
 
@@ -272,8 +315,10 @@ recipient scores:
 base     = skill:S weight, if S is named and assigned; else role:R weight (0 if none)
            (for roles in skill_weight_ignored_roles, a named skill is ignored)
 project  = project:P weight (0 if none, or if no project is named)
-affinity = affinity:<lead>:R weight, if a lead L is named (0 otherwise)
-score    = base + project + affinity
+logical  = base + project
+affinity = affinity score toward lead L (2.8.1), if a lead is named (0 otherwise)
+           (0 if logical < best logical in the field - coherence_bound)
+score    = logical + c * affinity                (balance, 2.17)
 ```
 
 SMEs (2.9) shape the field first: if project `P` has an SME among the
@@ -281,7 +326,9 @@ recipients, a feedback role is competed by SMEs only, and an implementer
 role by the non-SME recipients only. Then the highest score wins. A tie
 keeps the earlier recipient in the caller's list; the default list is seed
 order. The result also names a partner: the other recipient with the
-highest affinity to the winner for role R, if any.
+highest affinity score toward the winner for role R, if any. The result
+lists logical, affinity and balanced scores, and each affinity source's
+contribution.
 
 Default `skill_weight_ignored_roles` includes `documentation`: naming a
 skill in a docs task means editing that skill's document, not using the
@@ -328,6 +375,9 @@ templates module.
   policy checks, handoff and report shapes, binding facts.
 - Out: sending or posting a message, hosting or running a bot, calling an
   LLM, editing skill files, GitHub writes, and any one team's private data.
+- Extension point: team-specific affinity sources (2.8.1). The toolkit
+  defines the hook and the balance; a team's sources, their data and their
+  weights stay in that team's repository.
 - Storage: YAML in core; optional HDF5 through tiferet-h5; optional mirror
   through tiferet-kb.
 - Pin: `tiferet>=2.1,<2.2`.
@@ -345,6 +395,18 @@ Five skills tagged with roles. After seeding:
 - Implementation on that same SME project goes to `builder` or `lead`, never
   to `reviewer` by default.
 - Documentation ignores a named skill's weight and scores role + project.
+
+Affinity and balance, with placeholder bots `bot-a`, `bot-b`, `bot-c` and
+default settings (c = 0.5, coherence bound 2):
+
+- `bot-b` holds `affinity bot-a:implementation` 4. `bot-a` delegates
+  implementation. Logical scores: `bot-b` 6, `bot-c` 7. Balanced: `bot-b`
+  6 + 0.5 * 4 = 8, `bot-c` 7. `bot-b` wins.
+- Same, but `bot-b` scores logical 4: it is 3 below `bot-c`, past the
+  bound, so its affinity counts 0. `bot-c` wins with 7.
+- A binding adds an extra source that gives `bot-c` 2 toward `bot-a`.
+  `bot-c` balanced 7 + 0.5 * 2 = 8 ties `bot-b` at 8; the earlier recipient
+  in the list wins, and the result shows both sources' contributions.
 
 Real team data, seeds and reasons live in each team's private config, not
 in this repository.
