@@ -111,4 +111,15 @@ document. Routing (TGB0-RFP-002) needs the tags this store holds.
 - [ ] YAML-only mode works with no tiferet-h5 installed; `[h5]` mode creates
   blosc-filtered tables.
 
+## 8. Suggested TRD slicing
+
+Reconstruction debt, not a gate. Drawn from the Proposal items above; re-read
+at freeze time.
+
+1. Domain objects and compiler: `Skill`, `SkillSection`, `Production`;
+   parse, normalize and rebuild (Proposal 3-5).
+2. YAML store, sync and retag (Proposal 1, 6, 7).
+3. `[h5]` backend: layout, mappers, chunking and compression (Proposal 2, 3,
+   9).
+
 - major@grokbot via tif-ai

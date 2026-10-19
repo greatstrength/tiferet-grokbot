@@ -92,4 +92,14 @@ one team's names into the engine.
 - [ ] Rendered matrix and all event text are strict ASCII.
 - [ ] No example or test embeds a real team's agent names or weights.
 
+## 8. Suggested TRD slicing
+
+Reconstruction debt, not a gate. Drawn from the Proposal items above; re-read
+at freeze time.
+
+1. Agent store and weight events, with the default skill weight (Proposal
+   1-3).
+2. Relay: scoring, SME rule, documentation rule and tie-break (Proposal 4-7).
+3. Seed lists and matrix view (Proposal 8, 9).
+
 - major@grokbot via tif-ai

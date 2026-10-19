@@ -68,4 +68,13 @@ the seed on any machine. Chat memory and ad-hoc notes cannot do that.
 - [ ] Read commands do not change store mtime on an h5 backend.
 - [ ] All event fields are strict ASCII.
 
+## 8. Suggested TRD slicing
+
+Reconstruction debt, not a gate. Drawn from the Proposal items above; re-read
+at freeze time.
+
+1. Event row and pure field helper, strict ASCII (Proposal 1, 2, 6).
+2. Seed replay and folded re-seed (Proposal 3, 4).
+3. Read path: listing and export (Proposal 5).
+
 - major@grokbot via tif-ai

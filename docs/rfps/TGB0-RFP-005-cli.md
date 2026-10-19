@@ -83,4 +83,13 @@ from scripts and from bots that shell out.
   flags fail with a clear install hint.
 - [ ] Help, errors and matrix output are strict ASCII.
 
+## 8. Suggested TRD slicing
+
+Reconstruction debt, not a gate. Drawn from the Proposal items above; re-read
+at freeze time.
+
+1. Entry point, config, errors and ASCII output (Proposal 1, 3, 5, 6).
+2. Command table wired to the TGB0-RFP-001..004 services (Proposal 2).
+3. Binding file loader with safe defaults (Proposal 4).
+
 - major@grokbot via tif-ai

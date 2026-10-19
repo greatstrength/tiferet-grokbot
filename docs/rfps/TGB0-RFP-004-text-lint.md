@@ -77,4 +77,14 @@ findings.
 - [ ] No finding text embeds a real team's account name; examples use binding
   placeholders.
 
+## 8. Suggested TRD slicing
+
+Reconstruction debt, not a gate. Drawn from the Proposal items above; re-read
+at freeze time.
+
+1. `normalize_ascii` and `to_ascii` (Proposal 1, 2).
+2. `lint_text` with the built-in rules and config (Proposal 3, 4, 6).
+3. `grokbot lint` command (Proposal 5); may fold into the CLI slicing of
+   TGB0-RFP-005.
+
 - major@grokbot via tif-ai
