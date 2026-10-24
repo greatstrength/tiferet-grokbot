@@ -133,6 +133,8 @@ Neither form sends itself. The toolkit records and renders; the bot or a human d
 
 Per-repo or per-team facts every module reads from one file: RFP id prefix, proto branch name, shared bot account, signature format, project and role tag lists, skill directory path, and any platform-specific ids. Skills and RFPs should read the current repo's binding if it exists.
 
+RFP ids take the Tiferet shape `<PREFIX><major>-RFP-<nnn>`, with the prefix and major taken from the binding. For example, this repository binds `TSB0`, so its ids read `TSB0-RFP-001`; another project binds its own prefix.
+
 Routing settings also live in the binding: `affinity_coefficient` and `coherence_bound` (2.17), and `affinity_sources`, the ordered list of affinity sources (2.8.1; default `[pairwise]`).
 
 The binding owns the vocabulary: the role list and role classes (2.2) and the project tag list (2.3). The seed (3.6) owns only the weights and assignments that use that vocabulary, with their history. A seed entry that names a role or project tag the binding does not declare is invalid.

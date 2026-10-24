@@ -26,7 +26,7 @@ It runs as a library plus a CLI. Any softbot team, on any bot platform and any G
 
 ## RFPs
 
-Prototype work follows the Tiferet RFP model. An RFP is drafted locally in a gitignored `.rfp/` folder, then published as a GitHub issue on this repo; the issue body is the public copy. Ids are `RFP-<nnn>` (three digits, for example `RFP-001`), and issue titles are `RFP-<nnn> - <Plain Title>`. The RFP id prefix is a binding value (`docs/domain.md` 2.13); this repo currently uses no prefix. Every RFP cites `docs/domain.md` section numbers and passes the experiment gate (`docs/domain.md` 3.8). The v0.1 RFPs (RFP-001 to RFP-005) cover the skills store, roster and routing, ledger, lint and CLI; RFP-011 covers bot affinity and balance, and RFP-012 covers delegation builds.
+Prototype work follows the Tiferet RFP model. An RFP is drafted locally in a gitignored `.rfp/` folder, then published as a GitHub issue on this repo; the issue body is the public copy. Ids follow the Tiferet `<PREFIX><major>-RFP-<nnn>` shape. This repo's binding prefix is `TSB0` (`TSB` for tiferet-softbot plus major version `0`, marking the 0.x line until a 1.0 freeze), so ids are `TSB0-RFP-<nnn>` (three digits, for example `TSB0-RFP-001`) and issue titles are `TSB0-RFP-<nnn> - <Plain Title>`. The prefix is a binding value (`docs/domain.md` 2.13), so other teams and repos bind their own. Every RFP cites `docs/domain.md` section numbers and passes the experiment gate (`docs/domain.md` 3.8). The v0.1 RFPs (TSB0-RFP-001 to TSB0-RFP-005) cover the skills store, roster and routing, ledger, lint and CLI; TSB0-RFP-011 covers bot affinity and balance, and TSB0-RFP-012 covers delegation builds.
 
 ## Dependencies (planned)
 
