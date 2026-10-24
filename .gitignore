@@ -218,3 +218,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Local RFP drafts (published as GitHub issues)
+.rfp/
